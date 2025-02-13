@@ -140,3 +140,21 @@ dist/
 .DS_Store
 .env
 .env.local
+# Konfiguracja środowiska
+.env
+.env.local
+config.json
+
+# Pliki developerskie
+.idea/
+.vscode/
+node_modules/
+
+# Backup i tymczasowe
+*.bak
+*.tmp
+
+# Wrażliwe dane
+private/
+secrets/
+credentials.*

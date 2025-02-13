@@ -1,0 +1,11 @@
+# Blokuj dostęp do plików .env
+<FilesMatch "\.(env|json|key)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Blokuj przeglądanie katalogów
+Options -Indexes
+
+# Chroń katalog src
+RedirectMatch 403 ^/src/?$

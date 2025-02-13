@@ -1,0 +1,16 @@
+{
+    "Runda 1": [
+        {
+            "team1": "Team Alpha",
+            "team2": "Team Bravo",
+            "winner": "Team Alpha"
+        }
+    ],
+    "Runda 2": [
+        {
+            "team1": "Team Alpha",
+            "team2": "TBD",
+            "winner": "TBD"
+        }
+    ]
+}

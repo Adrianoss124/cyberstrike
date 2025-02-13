@@ -1,0 +1,8 @@
+[
+    {
+        "name": "Przykładowa Drużyna",
+        "captain": "Gracz1",
+        "players": ["Gracz2", "Gracz3", "Gracz4", "Gracz5"],
+        "avgHours": 1500
+    }
+]

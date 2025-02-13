@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberStrike Amateur Cup | Oficjalna strona turnieju</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700&family=Russo+One&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Nagłówek -->
+  <header class="tournament-header">
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="#" class="logo">
+          <img src="images/logo.png" alt="CyberStrike Amateur Cup" class="logo-img">
+        </a>
+        <div class="nav-links">
+          <a href="#register" class="nav-link">Rejestracja</a>
+          <a href="#schedule" class="nav-link">Harmonogram</a>
+          <a href="#teams" class="nav-link">Drużyny</a>
+          <a href="#bracket" class="nav-link">Drabinka</a>
+          <a href="#matches" class="nav-link">Mecze</a>
+          <a href="#rules" class="nav-link">Regulamin</a>
+          <a href="#faq" class="nav-link">FAQ</a>
+        </div>
+        <div class="hamburger">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <div class="hero" style="position: relative; z-index: 1;">
+      <div class="countdown">
+        <h2>Start turnieju za:</h2>
+        <div class="timer">
+          <span id="days">00</span>D
+          <span id="hours">00</span>H
+          <span id="minutes">00</span>M
+          <span id="seconds">00</span>S
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Główna zawartość -->
+  <main class="tournament-main">
+    <template id="playerTemplate">
+      <div class="form-group">
+        <label>{label}</label>
+        <div class="input-icon">
+          <i class="fas fa-user"></i>
+          <input type="text" name="player-{type}-{n}" {required} placeholder="Nick w grze">
+        </div>
+        <div class="steam-field">
+          <div class="input-icon">
+            <i class="fab fa-steam"></i>
+            <input type="url" 
+                   name="steam-{type}-{n}" 
+                   pattern="https://steamcommunity\.com/profiles/\d+/"
+                   placeholder="https://steamcommunity.com/profiles/76561199120140587/"
+                   {steam-required}>
+          </div>
+        </div>
+      </div>
+    </template>
+    <!-- Sekcja rejestracji -->
+    <section id="register" class="register-section">
+      <h2 class="section-title">Rejestracja Drużyny</h2>
+      
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+
+      <form id="registrationForm" action="https://formspree.io/f/xjkgeene" method="POST">
+        <!-- Krok 1 - Nazwa drużyny -->
+        <div class="form-step active" id="step1">
+          <div class="input-group">
+            <div class="form-group">
+              <label>Nazwa drużyny *</label>
+              <input type="text" name="team-name" required placeholder="np. Cyber Warriors">
+            </div>
+          </div>
+          <div class="form-navigation">
+            <button type="button" class="next-btn">Dalej →</button>
+          </div>
+        </div>
+
+        <!-- Krok 2 - Kapitan -->
+        <div class="form-step" id="step2">
+          <div class="input-group">
+            <div class="form-group">
+              <label>Kapitan *</label>
+              <div class="input-icon">
+                <i class="fas fa-crown"></i>
+                <input type="text" name="captain" required placeholder="Nick w grze">
+              </div>
+              <div class="steam-field">
+                <div class="input-icon">
+                  <i class="fab fa-steam"></i>
+                  <input type="url" 
+                         name="steam-captain" 
+                         required
+                         pattern="https://steamcommunity\.com/profiles/\d+/"
+                         placeholder="https://steamcommunity.com/profiles/76561199120140587/">
+                </div>
+              </div>
+              <!-- Dodany email kontaktowy dla kapitana -->
+              <div class="email-field">
+                <div class="input-icon">
+                  <i class="fas fa-envelope"></i>
+                  <input type="email" name="email-captain" required placeholder="Email kontaktowy">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-navigation">
+            <button type="button" class="prev-btn">← Wstecz</button>
+            <button type="button" class="next-btn">Dalej →</button>
+          </div>
+        </div>
+
+        <!-- Krok 3 - Skład główny -->
+        <div class="form-step" id="step3">
+          <div class="input-group">
+            <h3>Skład główny (4 kolejnych graczy)</h3>
+            <div id="mainPlayersContainer"></div>
+          </div>
+          <div class="form-navigation">
+            <button type="button" class="prev-btn">← Wstecz</button>
+            <button type="button" class="next-btn">Dalej →</button>
+          </div>
+        </div>
+
+        <!-- Krok 4 - Rezerwowi -->
+        <div class="form-step" id="step4">
+          <div class="input-group">
+            <h3>Gracze rezerwowi (maksymalnie 2, pola nieobowiązkowe)</h3>
+            <div id="substitutesContainer"></div>
+            <div class="form-navigation">
+              <button type="button" class="prev-btn">← Wstecz</button>
+              <!-- Zmiana: zamiana przycisku "Dalej" na przycisk "Zarejestruj" typu submit -->
+              <button type="submit" class="submit-btn">Zarejestruj</button>
+              <!-- Koniec zmiany -->
+            </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- Pozostałe sekcje (harmonogram, drabinka, mecze, drużyny, regulamin, FAQ) -->
+    <section id="schedule" class="schedule-section">
+      <h2 class="section-title">Harmonogram</h2>
+      <div class="schedule-timeline"></div>
+    </section>
+
+    <section id="bracket" class="bracket-section">
+      <h2 class="section-title">Drabinka Turniejowa</h2>
+      <div class="bracket-container"></div>
+    </section>
+
+    <section id="matches" class="matches-section">
+      <h2 class="section-title">Historia Meczów</h2>
+      <div class="matches-grid"></div>
+    </section>
+
+    <section id="teams" class="teams-section">
+      <h2 class="section-title">Drużyny Uczestniczące</h2>
+      <div class="teams-grid"></div>
+    </section>
+
+    <section id="rules" class="rules-section">
+      <h2 class="section-title">Regulamin Turnieju</h2>
+      <div class="rules-content">
+        <div class="rule-card glow-effect">
+          <div class="rule-header">
+            <i class="fas fa-trophy"></i>
+            <h3>§1. Struktura Turnieju</h3>
+          </div>
+          <ul class="cyber-list">
+            <li><span class="accent">System:</span> Double Elimination Bracket</li>
+            <li><span class="accent">Format meczów:</span>
+              <ul class="nested-list">
+                <li>Playoff: BO3</li>
+                <li>Finał: BO3 z możliwością "bracket reset"</li>
+              </ul>
+            </li>
+            <li><span class="accent">Harmonogram:</span> Weekendowe mecze z możliwością przesunięcia</li>
+          </ul>
+        </div>
+    
+        <div class="rule-card glow-effect">
+          <div class="rule-header">
+            <i class="fas fa-users"></i>
+            <h3>§2. Uczestnicy</h3>
+          </div>
+          <div class="grid-2col">
+            <div class="requirement-box">
+              <i class="fas fa-id-card"></i>
+              <p>Wymagane konto FaceIT</p>
+            </div>
+            <div class="requirement-box">
+              <i class="fab fa-steam"></i>
+              <p>Weryfikacja kont Steam</p>
+            </div>
+          </div>
+          <p>Skład drużyny: 5 głównych + 2 rezerwowych (opcjonalnie)</p>
+        </div>
+    
+        <div class="rule-card glow-effect">
+          <div class="rule-header">
+            <i class="fas fa-coins"></i>
+            <h3>§3. Opłaty i Nagrody</h3>
+          </div>
+          <div class="payment-grid">
+            <div class="payment-tier">
+              <h4>Składka Bazowa</h4>
+              <div class="price-tag">0 zł</div>
+              <ul>
+                <li>Udział w turnieju</li>
+                <li>Brak zwrotu</li>
+              </ul>
+            </div>
+            <div class="payment-tier">
+              <h4>Dobrowolny Wkład</h4>
+              <div class="price-tag">5+ zł</div>
+              <ul>
+                <li>Zwiększ pulę nagród</li>
+                <li>90% zwrotu</li>
+              </ul>
+            </div>
+          </div>
+          <div class="prize-distribution">
+            <h4>Podział Nagród:</h4>
+            <div class="prize-bar">
+              <div class="prize-segment" style="width:50%">1. Miejsce - 50%</div>
+              <div class="prize-segment" style="width:30%">2. Miejsce - 30%</div>
+              <div class="prize-segment" style="width:20%">3. Miejsce - 10%</div>
+            </div>
+          </div>
+        </div>
+
+        <section id="faq" class="faq-section">
+          <h2 class="section-title">Najczęstsze Pytania</h2>
+          <div class="faq-content">
+            <div class="faq-grid">
+              <!-- Pytanie 1 -->
+              <div class="faq-card glow-effect">
+                <div class="faq-question">
+                  <i class="fas fa-question-circle"></i>
+                  <h3>Kiedy rozpoczyna się turniej?</h3>
+                  <span class="faq-toggle"></span>
+                </div>
+                <div class="faq-answer">
+                  <p>Turniej rozpoczyna się <strong>14 marca 2025 o 18:00 CET</strong>. Dokładny harmonogram meczów będzie dostępny po zamknięciu rejestracji.</p>
+                </div>
+              </div>
+        
+              <!-- Pytanie 2 -->
+              <div class="faq-card glow-effect">
+                <div class="faq-question">
+                  <i class="fas fa-users"></i>
+                  <h3>Jak zarejestrować drużynę?</h3>
+                  <span class="faq-toggle"></span>
+                </div>
+                <div class="faq-answer">
+                  <p>Rejestracja odbywa się przez formularz na stronie. Potrzebujesz:
+                    <ul class="cyber-list">
+                      <li>Nazwy drużyny</li>
+                      <li>Danych 5 głównych graczy</li>
+                      <li>Weryfikacji kont Steam</li>
+                    </ul>
+                  </p>
+                </div>
+              </div>
+        
+              <!-- Pytanie 3 -->
+              <div class="faq-card glow-effect">
+                <div class="faq-question">
+                  <i class="fas fa-id-card"></i>
+                  <h3>Czy są wymagania wiekowe?</h3>
+                  <span class="faq-toggle"></span>
+                </div>
+                <div class="faq-answer">
+                  <p>Nie ma wymagań wiekowych <strong>16 lat</strong>. Młodsi gracze wymagają zgody rodzica/opiekuna.</p>
+                </div>
+              </div>
+        
+              <!-- Pytanie 4 -->
+              <div class="faq-card glow-effect">
+                <div class="faq-question">
+                  <i class="fas fa-award"></i>
+                  <h3>Jakie są nagrody?</h3>
+                  <span class="faq-toggle"></span>
+                </div>
+                <div class="faq-answer">
+                  <p>Pula nagród zależy od wpłat uczestników:
+                    <div class="prize-breakdown">
+                      <div class="prize-tier">
+                        <span>1. Miejsce:</span>
+                        <span>50% puli</span>
+                      </div>
+                      <div class="prize-tier">
+                        <span>2. Miejsce:</span>
+                        <span>30% puli</span>
+                      </div>
+                      <div class="prize-tier">
+                        <span>3. Miejsce:</span>
+                        <span>10% puli</span>
+                      </div>
+                    </div>
+                  </p>
+                </div>
+              </div>
+        
+              <!-- Pytanie 5 -->
+              <div class="faq-card glow-effect">
+                <div class="faq-question">
+                  <i class="fab fa-steam"></i>
+                  <h3>Jak działa weryfikacja Steam?</h3>
+                  <span class="faq-toggle"></span>
+                </div>
+                <div class="faq-answer">
+                  <p>Wymagamy linku do profilu Steam w formacie:
+                    <code>https://steamcommunity.com/profiles/1234567/...</code>
+                    <br>Konto nie może mieć blokady vac.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+  </main>
+
+  <!-- Stopka -->
+  <footer class="tournament-footer">
+    <div class="footer-content">
+      <div class="legal-links">
+        <a href="/regulamin">Regulamin</a>
+        <a href="/polityka-prywatnosci">Polityka Prywatności</a>
+        <a href="/kontakt">Kontakt</a>
+      </div>
+      <div class="social-media">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitch"></i></a>
+        <a href="#"><i class="fab fa-discord"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal do streamu -->
+  <div class="stream-modal" id="streamModal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <iframe id="twitchStream"></iframe>
+    </div>
+  </div>
+
+  <script src="js/countdown.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>

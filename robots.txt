@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow: /randomFolder/*
+
+Sitemap: https://link.to.your/sitemap.xml

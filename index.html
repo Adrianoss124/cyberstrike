@@ -66,16 +66,90 @@
   </script>
   
   <!-- Ładowanie CSS -->
-  <link rel="stylesheet" href="styles.css" media="all">
-  <noscript>
-    <link rel="stylesheet" href="styles.css">
-  </noscript>
+  <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="styles.css"></noscript>
   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700&family=Russo+One&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+  --primary-accent: #FF4655;
+  --secondary-accent: #00FFE0;
+  --dark-bg: #0A0C10;
+  --card-bg: rgba(16, 18, 22, 0.95);
+  --text-primary: #FFFFFF;
+  --text-secondary: #8B98A9;
+  --neon-blue: #00A3FF;
+  --cyber-purple: #6C00FF;
+  --header-gradient: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+  --cyber-border: 1px solid rgba(0, 255, 224, 0.3);
+  --section-spacing: 8rem;
+}
+
+/* Fonty wbudowane w formacie woff2 */
+@font-face {
+  font-family: 'Oxanium';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/Oxanium.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Russo One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/RussoOne.woff2) format('woff2');
+}
+
+/* Globalne style krytyczne */
+body {
+  background: var(--dark-bg);
+  color: var(--text-primary);
+  font-family: Oxanium, sans-serif;
+  line-height: 1.8;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.tournament-header {
+  background: var(--header-gradient);
+  border-bottom: 3px solid var(--primary-accent);
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar {
+  padding: 1rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-text {
+  font-family: 'Russo One', sans-serif;
+  font-size: 24px;
+  color: #ff5722;
+  position: relative;
+}
+
+.timer {
+  font-family: 'Russo One', sans-serif;
+  font-size: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  text-align: center;
+}
+  </style>
 </head>
 <body>
   <!-- Komunikat dla użytkowników bez JavaScript -->

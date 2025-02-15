@@ -3,13 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CyberStrike Amateur Cup | Oficjalna strona turnieju</title>
+  <title>CyberStrike Amateur Cup 2024 | Amatorski Turniej CS2 (Counter-Strike 2)</title>
+  <meta name="description" content="Weź udział w CyberStrike Amateur Cup - amatorskim turnieju CS2! Zarejestruj swoją drużynę, rywalizuj o nagrody i pokaż swoje umiejętności. Rejestracja otwarta!">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.przykladowastrona.pl" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.przykladowastrona.pl">
+  <meta property="og:title" content="CyberStrike Amateur Cup 2024 | Amatorski Turniej CS2 (Counter-Strike 2)">
+  <meta property="og:description" content="Weź udział w CyberStrike Amateur Cup - amatorskim turnieju CS2! Zarejestruj swoją drużynę, rywalizuj o nagrody i pokaż swoje umiejętności. Rejestracja otwarta!">
+  <meta property="og:image" content="https://www.przykladowastrona.pl/images/og-image.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://www.przykladowastrona.pl">
+  <meta property="twitter:title" content="CyberStrike Amateur Cup 2024 | Amatorski Turniej CS2 (Counter-Strike 2)">
+  <meta property="twitter:description" content="Weź udział w CyberStrike Amateur Cup - amatorskim turnieju CS2! Zarejestruj swoją drużynę, rywalizuj o nagrody i pokaż swoje umiejętności. Rejestracja otwarta!">
+  <meta property="twitter:image" content="https://www.przykladowastrona.pl/images/twitter-image.jpg">
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "CyberStrike Amateur Cup 2024",
+    "startDate": "2025-03-14T18:00",
+    "endDate": "2025-03-16T22:00",
+    "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": {
+      "@type": "VirtualLocation",
+      "url": "https://www.przykladowastrona.pl"
+    },
+    "image": ["https://www.przykladowastrona.pl/images/logo.jpg"],
+    "description": "Amatorski turniej Counter-Strike 2 dla drużyn z całej Polski. Zarejestruj swoją drużynę i zawalcz o nagrody!",
+    "organizer": {
+      "@type": "Organization",
+      "name": "CyberStrike Esports",
+      "url": "https://www.przykladowastrona.pl"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.przykladowastrona.pl#register",
+      "price": "0",
+      "priceCurrency": "PLN",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700&family=Russo+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Nagłówek -->
@@ -17,7 +66,7 @@
     <nav class="navbar">
       <div class="nav-container">
         <a href="#" class="logo">
-          <img src="images/logo.png" alt="CyberStrike Amateur Cup" class="logo-img">
+          <div class="logo-text">Cyberstrike</div>
         </a>
         <div class="nav-links">
           <a href="#register" class="nav-link">Rejestracja</a>
@@ -35,14 +84,17 @@
     </nav>
     
     <!-- Hero Section -->
-    <div class="hero" style="position: relative; z-index: 1;">
+    <div class="hero" itemscope itemtype="https://schema.org/Event">
+      <meta itemprop="name" content="CyberStrike Amateur Cup 2024">
+      <meta itemprop="startDate" content="2025-03-14T18:00">
+      <meta itemprop="endDate" content="2025-03-16T22:00">
       <div class="countdown">
         <h2>Start turnieju za:</h2>
         <div class="timer">
-          <span id="days">00</span>D
-          <span id="hours">00</span>H
-          <span id="minutes">00</span>M
-          <span id="seconds">00</span>S
+          <span id="days">00</span>Dni
+          <span id="hours">00</span>Godzin
+          <span id="minutes">00</span>Minut
+          <span id="seconds">00</span>Sekund
         </div>
       </div>
     </div>
@@ -191,9 +243,7 @@
             </li>
             <li><span class="accent">Harmonogram:</span> Weekendowe mecze z możliwością przesunięcia</li>
           </ul>
-        </div>
     
-        <div class="rule-card glow-effect">
           <div class="rule-header">
             <i class="fas fa-users"></i>
             <h3>§2. Uczestnicy</h3>
@@ -209,9 +259,6 @@
             </div>
           </div>
           <p>Skład drużyny: 5 głównych + 2 rezerwowych (opcjonalnie)</p>
-        </div>
-    
-        <div class="rule-card glow-effect">
           <div class="rule-header">
             <i class="fas fa-coins"></i>
             <h3>§3. Opłaty i Nagrody</h3>
@@ -243,111 +290,113 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <section id="faq" class="faq-section">
-          <h2 class="section-title">Najczęstsze Pytania</h2>
-          <div class="faq-content">
-            <div class="faq-grid">
-              <!-- Pytanie 1 -->
-              <div class="faq-card glow-effect">
-                <div class="faq-question">
-                  <i class="fas fa-question-circle"></i>
-                  <h3>Kiedy rozpoczyna się turniej?</h3>
-                  <span class="faq-toggle"></span>
-                </div>
-                <div class="faq-answer">
-                  <p>Turniej rozpoczyna się <strong>14 marca 2025 o 18:00 CET</strong>. Dokładny harmonogram meczów będzie dostępny po zamknięciu rejestracji.</p>
-                </div>
+      <!-- Sekcja FAQ ze strukturalnymi danymi -->
+<section id="faq" class="faq-section">
+  <h2 class="section-title">Najczęstsze Pytania</h2>
+  <div class="faq-content" itemscope itemtype="https://schema.org/FAQPage">
+    <div class="faq-grid">
+      <!-- Pytanie 1 -->
+      <div class="faq-card glow-effect" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <div class="faq-question">
+          <i class="fas fa-question-circle"></i>
+          <h3 itemprop="name">Kiedy rozpoczyna się turniej?</h3>
+          <span class="faq-toggle"></span>
+        </div>
+        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Turniej rozpoczyna się <strong>14 marca 2025 o 18:00 CET</strong>. Dokładny harmonogram meczów będzie dostępny po zamknięciu rejestracji.</p>
+        </div>
+      </div>
+
+      <!-- Pytanie 2 -->
+      <div class="faq-card glow-effect" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <div class="faq-question">
+          <i class="fas fa-users"></i>
+          <h3 itemprop="name">Jak zarejestrować drużynę?</h3>
+          <span class="faq-toggle"></span>
+        </div>
+        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Rejestracja odbywa się przez formularz na stronie. Potrzebujesz:
+            <ul class="cyber-list">
+              <li>Nazwy drużyny</li>
+              <li>Danych 5 głównych graczy</li>
+              <li>Weryfikacji kont Steam</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+
+      <!-- Pytanie 3 -->
+      <div class="faq-card glow-effect" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <div class="faq-question">
+          <i class="fas fa-id-card"></i>
+          <h3 itemprop="name">Czy są wymagania wiekowe?</h3>
+          <span class="faq-toggle"></span>
+        </div>
+        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Nie ma wymagań wiekowych <strong>16 lat</strong>. Młodsi gracze wymagają zgody rodzica/opiekuna.</p>
+        </div>
+      </div>
+
+      <!-- Pytanie 4 -->
+      <div class="faq-card glow-effect" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <div class="faq-question">
+          <i class="fas fa-award"></i>
+          <h3 itemprop="name">Jakie są nagrody?</h3>
+          <span class="faq-toggle"></span>
+        </div>
+        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Pula nagród zależy od wpłat uczestników:
+            <div class="prize-breakdown">
+              <div class="prize-tier">
+                <span>1. Miejsce:</span>
+                <span>50% puli</span>
               </div>
-        
-              <!-- Pytanie 2 -->
-              <div class="faq-card glow-effect">
-                <div class="faq-question">
-                  <i class="fas fa-users"></i>
-                  <h3>Jak zarejestrować drużynę?</h3>
-                  <span class="faq-toggle"></span>
-                </div>
-                <div class="faq-answer">
-                  <p>Rejestracja odbywa się przez formularz na stronie. Potrzebujesz:
-                    <ul class="cyber-list">
-                      <li>Nazwy drużyny</li>
-                      <li>Danych 5 głównych graczy</li>
-                      <li>Weryfikacji kont Steam</li>
-                    </ul>
-                  </p>
-                </div>
+              <div class="prize-tier">
+                <span>2. Miejsce:</span>
+                <span>30% puli</span>
               </div>
-        
-              <!-- Pytanie 3 -->
-              <div class="faq-card glow-effect">
-                <div class="faq-question">
-                  <i class="fas fa-id-card"></i>
-                  <h3>Czy są wymagania wiekowe?</h3>
-                  <span class="faq-toggle"></span>
-                </div>
-                <div class="faq-answer">
-                  <p>Nie ma wymagań wiekowych <strong>16 lat</strong>. Młodsi gracze wymagają zgody rodzica/opiekuna.</p>
-                </div>
-              </div>
-        
-              <!-- Pytanie 4 -->
-              <div class="faq-card glow-effect">
-                <div class="faq-question">
-                  <i class="fas fa-award"></i>
-                  <h3>Jakie są nagrody?</h3>
-                  <span class="faq-toggle"></span>
-                </div>
-                <div class="faq-answer">
-                  <p>Pula nagród zależy od wpłat uczestników:
-                    <div class="prize-breakdown">
-                      <div class="prize-tier">
-                        <span>1. Miejsce:</span>
-                        <span>50% puli</span>
-                      </div>
-                      <div class="prize-tier">
-                        <span>2. Miejsce:</span>
-                        <span>30% puli</span>
-                      </div>
-                      <div class="prize-tier">
-                        <span>3. Miejsce:</span>
-                        <span>10% puli</span>
-                      </div>
-                    </div>
-                  </p>
-                </div>
-              </div>
-        
-              <!-- Pytanie 5 -->
-              <div class="faq-card glow-effect">
-                <div class="faq-question">
-                  <i class="fab fa-steam"></i>
-                  <h3>Jak działa weryfikacja Steam?</h3>
-                  <span class="faq-toggle"></span>
-                </div>
-                <div class="faq-answer">
-                  <p>Wymagamy linku do profilu Steam w formacie:
-                    <code>https://steamcommunity.com/profiles/1234567/...</code>
-                    <br>Konto nie może mieć blokady vac.
-                  </p>
-                </div>
+              <div class="prize-tier">
+                <span>3. Miejsce:</span>
+                <span>10% puli</span>
               </div>
             </div>
-          </div>
-        </section>
+          </p>
+        </div>
+      </div>
+
+      <!-- Pytanie 5 -->
+      <div class="faq-card glow-effect" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <div class="faq-question">
+          <i class="fab fa-steam"></i>
+          <h3 itemprop="name">Jak działa weryfikacja Steam?</h3>
+          <span class="faq-toggle"></span>
+        </div>
+        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Wymagamy linku do profilu Steam w formacie:
+            <code>https://steamcommunity.com/profiles/1234567/...</code>
+            <br>Konto nie może mieć blokady vac.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
   </main>
 
   <!-- Stopka -->
   <footer class="tournament-footer">
     <div class="footer-content">
       <div class="legal-links">
-        <a href="/regulamin">Regulamin</a>
-        <a href="/polityka-prywatnosci">Polityka Prywatności</a>
-        <a href="/kontakt">Kontakt</a>
+        <a href="#regulamin" aria-label="Regulamin turnieju">Regulamin</a>
+        <a href="/polityka-prywatnosci" aria-label="Polityka prywatności">Polityka Prywatności</a>
+        <a href="/kontakt" aria-label="Kontakt z organizatorami">Kontakt</a>
       </div>
       <div class="social-media">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-twitch"></i></a>
-        <a href="#"><i class="fab fa-discord"></i></a>
+        <a href="#" aria-label="Nasz Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" aria-label="Nasz Twitch"><i class="fab fa-twitch"></i></a>
+        <a href="https://discord.gg/gXX7QgUFdC" aria-label="Nasz Discord"><i class="fab fa-discord"></i></a>
       </div>
     </div>
   </footer>

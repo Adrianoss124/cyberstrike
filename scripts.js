@@ -171,3 +171,72 @@ document.querySelectorAll('.faq-card').forEach(card => {
     card.classList.toggle('active');
   });
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const scrollButton = document.querySelector('.cs2-scroll-top');
+  let isScrolling = false;
+
+  // Pokazywanie przycisku
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400 && !isScrolling) {
+      scrollButton.classList.add('visible');
+    } else {
+      scrollButton.classList.remove('visible');
+    }
+  });
+
+  // Animacja kliknięcia
+  scrollButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (isScrolling) return;
+    
+    isScrolling = true;
+    scrollButton.style.pointerEvents = 'none';
+    
+    // Animacja elementów
+    scrollButton.classList.add('active');
+    
+    // Płynne przewijanie
+    const startY = window.scrollY;
+    const duration = 800;
+    const startTime = performance.now();
+    
+    const animateScroll = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = progress < 0.5 ? 2 * progress * progress : -1 + (4 - 2 * progress) * progress;
+      
+      window.scrollTo(0, startY * (1 - ease));
+      
+      if (progress < 1) {
+        requestAnimationFrame(animateScroll);
+      } else {
+        isScrolling = false;
+        scrollButton.style.pointerEvents = 'auto';
+        scrollButton.classList.remove('active');
+      }
+    };
+    
+    requestAnimationFrame(animateScroll);
+  });
+
+  // Hover effects
+  scrollButton.addEventListener('mouseenter', () => {
+    scrollButton.classList.add('hover');
+    anime({
+      targets: '.cs2-flash',
+      opacity: [0, 0.4],
+      duration: 300,
+      easing: 'easeOutQuad'
+    });
+  });
+
+  scrollButton.addEventListener('mouseleave', () => {
+    scrollButton.classList.remove('hover');
+    anime({
+      targets: '.cs2-flash',
+      opacity: 0,
+      duration: 200,
+      easing: 'easeOutQuad'
+    });
+  });
+});

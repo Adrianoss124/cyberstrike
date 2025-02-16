@@ -68,6 +68,7 @@
   <!-- Ładowanie CSS -->
   <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="styles.css"></noscript>
+  <link rel="stylesheet" href="/turniej/bracket.js">
   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -298,7 +299,80 @@ body {
     </section>
     <section id="bracket" class="bracket-section">
       <h2 class="section-title">Drabinka Turniejowa</h2>
-      <div class="bracket-container"></div>
+      <div class="bracket-container">
+        <!-- Runda 1 -->
+        <div class="bracket-round">
+          <div class="round-header">Runda 1</div>
+          
+          <div class="match-wrapper">
+            <div class="match duel">
+              <div class="team-left">
+                <span class="team-name">Zespół A</span>
+                <span class="team-score win">16</span>
+              </div>
+              <div class="vs-separator"></div>
+              <div class="team-right">
+                <span class="team-score">14</span>
+                <span class="team-name">Zespół B</span>
+              </div>
+              <div class="match-connector horizontal"></div>
+            </div>
+    
+            <div class="match duel">
+              <div class="team-left">
+                <span class="team-name">Zespół C</span>
+                <span class="team-score lose">12</span>
+              </div>
+              <div class="vs-separator"></div>
+              <div class="team-right">
+                <span class="team-score">16</span>
+                <span class="team-name">Zespół D</span>
+              </div>
+              <div class="match-connector horizontal"></div>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Półfinały -->
+        <div class="bracket-round">
+          <div class="round-header">Półfinały</div>
+          
+          <div class="match-wrapper">
+            <div class="match duel">
+              <div class="team-left">
+                <span class="team-name">Zespół A</span>
+                <span class="team-score">-</span>
+              </div>
+              <div class="vs-separator upcoming"></div>
+              <div class="team-right">
+                <span class="team-score">-</span>
+                <span class="team-name">Zespół D</span>
+              </div>
+              <div class="match-connector vertical"></div>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Finał -->
+        <div class="bracket-round final">
+          <div class="round-header">Finał</div>
+          
+          <div class="match-wrapper">
+            <div class="match duel">
+              <div class="team-left">
+                <span class="team-name">TBD</span>
+                <span class="team-score">-</span>
+              </div>
+              <div class="vs-separator final"></div>
+              <div class="team-right">
+                <span class="team-score">-</span>
+                <span class="team-name">TBD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     </section>
     <section id="matches" class="matches-section">
       <h2 class="section-title">Historia Meczów</h2>
@@ -306,7 +380,9 @@ body {
     </section>
     <section id="teams" class="teams-section">
       <h2 class="section-title">Drużyny Uczestniczące</h2>
-      <div class="teams-grid"></div>
+      <div class="teams-grid loading">
+        <div class="loader"><i class="fas fa-spinner fa-spin"></i> Ładowanie drużyn...</div>
+      </div>
     </section>
     <section id="rules" class="rules-section">
       <h2 class="section-title">Regulamin Turnieju</h2>
@@ -530,5 +606,6 @@ body {
     })();
   </script>
   <script src="scripts.js" defer></script>
+  <script src="/turniej/bracket.js" defer></script>
 </body>
 </html>

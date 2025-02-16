@@ -3362,3 +3362,19 @@ body::before {
   50% { opacity: 0.3; }
   100% { opacity: 0.1; }
 }
+@media (max-width: 768px) {
+  .logo-img {
+    height: 40px; /* Smaller size for mobile */
+    margin-left: 1rem; /* Ensure proper spacing */
+  }
+/* Add fallback styling in case image fails to load */
+.logo::before {
+  content: "CyberStrike";
+  display: none;
+}
+
+.logo-img[src=""] ~ .logo::before {
+  display: block;
+  color: var(--primary-accent);
+  font-family: 'Russo One', sans-serif;
+}

@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'Russo One';
+  src: url('https://fonts.gstatic.com/s/russoone/v16/Z9XUDmZRWg6M1LvRYsHOz8mM.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Oxanium';
+  src: url('https://fonts.gstatic.com/s/oxanium/v19/RrQPboN_4yJ0JmiMUW7sIGjd1IA9G80XfniMBXQ7d67x.ttf') format('truetype');
+}
 /* Animacje i efekty hover */
 @media (prefers-reduced-motion: no-preference) {
   .timer span {
@@ -617,15 +626,6 @@ input:invalid + .error-message {
   top: 50%;
   transform: translateY(-50%);
 }
-:root {
-  --neon-blue: #00f3ff;
-  --neon-pink: #ff00ff;
-  --cyber-black: #0a0a12;
-  --hologram-teal: #00ffd136;
-  --matrix-green: #00ff00;
-  --cyber-yellow: #ffd300;
-  --terminal-text: 'Courier New', monospace;
-}
 
 body {
   background: var(--cyber-black);
@@ -784,21 +784,6 @@ body {
     min-width: 60px; /* Mniejsza minimalna szerokość */
   }
 
-}
-:root {
-  --primary-accent: #FF4655;
-  --secondary-accent: #00FFE0;
-  --dark-bg: #0A0C10;
-  --card-bg: rgba(16, 18, 22, 0.95);
-  --text-primary: #FFFFFF;
-  --text-secondary: #8B98A9;
-  --neon-blue: #00A3FF;
-  --cyber-purple: #6C00FF;
-  --header-gradient: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
-  --cyber-border: 1px solid rgba(0, 255, 224, 0.3);
-  --cyber-shadow: 0 0 30px rgba(0, 255, 224, 0.2);
-  --section-spacing: 8rem;
-  --glow-animation: cyber-glow 2s infinite alternate;
 }
 
 @keyframes cyber-glow {
@@ -2811,4 +2796,569 @@ html, body {
   width: 100%; /* Pełna szerokość kontenera */
   max-width: 100%; /* Nie przekracza szerokości kontenera */
   overflow: hidden; /* Zapobiega wyciekaniu zawartości */
+}
+.teams-section {
+  padding: 4rem 5%;
+  background: var(--dark-bg);
+}
+
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  position: relative;
+  min-height: 200px;
+}
+
+.team-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: var(--cyber-border);
+  transition: transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.team-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, 
+    transparent, 
+    var(--primary-accent),
+    transparent);
+  transform: rotate(45deg);
+  animation: cyberGlow 3s linear infinite;
+}
+
+@keyframes cyberGlow {
+  0% { opacity: 0.1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0.1; }
+}
+
+.team-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.team-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 1rem;
+  border: 2px solid var(--secondary-accent);
+}
+
+.team-name {
+  font-family: 'Russo One', sans-serif;
+  color: var(--primary-accent);
+  margin: 0;
+}
+
+.players-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.player-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.player-role {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  background: var(--primary-accent);
+  border-radius: 3px;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 0.5rem;
+  background: rgba(0,0,0,0.3);
+  border-radius: 5px;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.stat-value {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2rem;
+  color: var(--secondary-accent);
+}
+
+.loading {
+  filter: blur(5px);
+  pointer-events: none;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+}
+.bracket-section {
+  padding: 4rem 5%;
+  background: var(--dark-bg);
+  overflow-x: auto;
+}
+
+.bracket-container {
+  display: flex;
+  justify-content: center;
+  min-width: 1200px;
+  position: relative;
+}
+
+.bracket-round {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 50px;
+  position: relative;
+}
+
+.bracket-round:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -50px;
+  height: 80%;
+  width: 50px;
+  border-right: 3px solid var(--primary-accent);
+  border-top: 3px solid var(--primary-accent);
+  border-bottom: 3px solid var(--primary-accent);
+}
+
+.bracket-match {
+  background: var(--card-bg);
+  border: 2px solid var(--primary-accent);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  width: 280px;
+  position: relative;
+  box-shadow: 0 0 15px rgba(255,70,85,0.2);
+}
+
+.match-connector {
+  position: absolute;
+  right: -75px;
+  width: 50px;
+  height: 2px;
+  background: var(--primary-accent);
+  top: 50%;
+}
+
+.match-team {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  margin: 0.3rem 0;
+  background: rgba(255,255,255,0.05);
+}
+
+.team-name {
+  font-family: 'Russo One', sans-serif;
+  font-size: 0.9rem;
+}
+
+.match-score {
+  background: var(--primary-accent);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  min-width: 30px;
+  text-align: center;
+}
+
+.match-status {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: var(--secondary-accent);
+  color: var(--dark-bg);
+  padding: 0.3rem 0.7rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.bracket-container {
+  padding: 2rem;
+  background: rgba(16, 18, 22, 0.95);
+  border-radius: 12px;
+  margin: 2rem auto;
+  max-width: 1200px;
+}
+
+.bracket-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #FF4655;
+  padding-bottom: 1rem;
+}
+
+.bracket-round {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.match-card {
+  background: #1A1D24;
+  border: 1px solid #2E323A;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.match-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(255, 70, 85, 0.3);
+}
+
+.match-card.live {
+  border-color: #00FFE0;
+  animation: pulse-glow 1.5s infinite;
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 5px rgba(0, 255, 224, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(0, 255, 224, 0.6); }
+  100% { box-shadow: 0 0 5px rgba(0, 255, 224, 0.3); }
+}
+
+.team {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 5px;
+}
+
+.team.winner {
+  background: linear-gradient(90deg, 
+    rgba(255, 70, 85, 0.15) 0%, 
+    rgba(255, 70, 85, 0.05) 100%);
+  border-left: 3px solid #FF4655;
+}
+
+.team-name {
+  font-family: 'Russo One', sans-serif;
+  font-size: 1.1rem;
+  color: #FFFFFF;
+}
+
+.team-score {
+  background: #FF4655;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.match-status {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #00FFE0;
+  color: #0A0C10;
+  padding: 0.4rem 1rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Połączenia między rundami */
+.bracket-round:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -50px;
+  height: 60%;
+  width: 50px;
+  border-right: 2px dashed #FF4655;
+  top: 20%;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+  .bracket-container {
+    padding: 1rem;
+  }
+  
+  .bracket-round::after {
+    display: none;
+  }
+  
+  .team-name {
+    font-size: 0.9rem;
+  }
+}
+/* ================ VARIABLES ================ */
+:root {
+  --primary-accent: #FF4655;
+  --secondary-accent: #00FFE0;
+  --dark-bg: #0A0C10;
+  --card-bg: rgba(16, 18, 22, 0.95);
+  --text-primary: #FFFFFF;
+  --text-secondary: #8B98A9;
+  --neon-blue: #00A3FF;
+  --cyber-purple: #6C00FF;
+  --header-gradient: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+  --cyber-border: 1px solid rgba(0, 255, 224, 0.3);
+  --cyber-shadow: 0 0 30px rgba(0, 255, 224, 0.2);
+  --section-spacing: 8rem;
+  --header-height: 80px;
+}
+
+/* ================ GLOBAL STYLES ================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  background: var(--dark-bg);
+  color: var(--text-primary);
+  font-family: 'Oxanium', sans-serif;
+  line-height: 1.6;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" opacity="0.05"><rect width="100" height="100" fill="none"/><path d="M50 0L100 50L50 100L0 50Z" fill="%2300FFE0"/></svg>');
+  z-index: -1;
+}
+
+/* ================ HEADER & NAVIGATION ================ */
+.tournament-header {
+  background: var(--header-gradient);
+  border-bottom: 3px solid var(--primary-accent);
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar {
+  padding: 1rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1000;
+}
+
+.logo {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.5rem;
+  color: #ff5722;
+  position: relative;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  position: relative;
+  padding: 0.5rem;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-accent);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+/* ================ MAIN CONTENT ================ */
+.hero {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.timer {
+  font-family: 'Russo One', sans-serif;
+  font-size: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  text-align: center;
+}
+
+/* ================ FORMS ================ */
+.form-step {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 1rem 0;
+}
+
+.input-icon {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.input-icon i {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ================ BRACKET ================ */
+.bracket-section {
+  padding: 4rem 5%;
+  background: var(--dark-bg);
+}
+
+.bracket-container {
+  display: flex;
+  justify-content: center;
+  min-width: 100%;
+  overflow-x: auto;
+}
+
+.bracket-round {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 2rem;
+  min-width: 300px;
+}
+
+.bracket-match {
+  background: var(--card-bg);
+  border: var(--cyber-border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  width: 280px;
+  position: relative;
+}
+
+/* ================ TEAMS ================ */
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.team-card {
+  background: var(--card-bg);
+  border: var(--cyber-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+/* ================ RESPONSIVE ================ */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: var(--header-height);
+    right: -100%;
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    background: var(--card-bg);
+    flex-direction: column;
+    padding: 2rem;
+    transition: right 0.3s ease;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .timer {
+    font-size: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bracket-round {
+    margin: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .timer {
+    grid-template-columns: 1fr;
+  }
+  
+  .bracket-match {
+    width: 100%;
+  }
+}
+
+/* ================ ANIMATIONS ================ */
+@keyframes scanline {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(50%); }
+}
+
+@keyframes cyberGlow {
+  0% { opacity: 0.1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0.1; }
 }

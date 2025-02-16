@@ -1,16 +1,42 @@
 {
-    "Runda 1": [
-        {
-            "team1": "Team Alpha",
-            "team2": "Team Bravo",
-            "winner": "Team Alpha"
-        }
-    ],
-    "Runda 2": [
-        {
-            "team1": "Team Alpha",
-            "team2": "TBD",
-            "winner": "TBD"
-        }
+    "tournament": "CyberStrike Amateur Cup 2024",
+    "structure": "single-elimination",
+    "rounds": [
+      {
+        "id": "quarterfinals",
+        "name": "Ćwierćfinały",
+        "matches": [
+          {
+            "matchId": 1,
+            "teamA": "Sniadowiaki",
+            "teamB": "TBH",
+            "scoreA": 0,
+            "scoreB": 0,
+            "status": "upcoming"
+          },
+          {
+            "matchId": 2,
+            "teamA": "TBH",
+            "teamB": "TBH",
+            "scoreA": 0,
+            "scoreB": 0,
+            "status": "upcoming"
+          }
+        ]
+      },
+      {
+        "id": "semifinals",
+        "name": "Półfinały",
+        "matches": [
+          {
+            "matchId": 3,
+            "teamA": "TBH",
+            "teamB": "TBH",
+            "scoreA": null,
+            "scoreB": null,
+            "status": "upcoming"
+          }
+        ]
+      }
     ]
-}
+  }

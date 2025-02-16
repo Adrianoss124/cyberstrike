@@ -142,23 +142,45 @@ document.addEventListener('DOMContentLoaded', () => {
       const submitButton = document.querySelector('.submit-btn');
       if (!submitButton) return;
 
+      // Walidacja wszystkich pól
+      let isValid = true;
+      registrationForm.querySelectorAll('[required]').forEach(input => {
+        if (!input.checkValidity()) {
+          input.reportValidity();
+          isValid = false;
+        }
+      });
+      if (!isValid) return;
+
       try {
         submitButton.disabled = true;
         submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Wysyłanie...';
 
-        const formData = new FormData(e.target);
-        const response = await fetch(e.target.action, {
+        // Zbieranie danych z formularza
+        const formData = new FormData(registrationForm);
+        
+        // Dodanie nagłówków wymaganych przez Formspree
+        const response = await fetch(registrationForm.action, {
           method: 'POST',
           body: formData,
-          headers: { 'Accept': 'application/json' }
+          headers: {
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest' // Wymagany nagłówek dla Formspree
+          }
         });
 
-        if (!response.ok) throw new Error('Błąd wysyłania');
-        alert('Rejestracja udana!');
-        e.target.reset();
-        showStep(1);
+        const result = await response.json();
+        
+        if (result.ok) {
+          alert('Rejestracja udana! Sprawdź swoją skrzynkę mailową.');
+          registrationForm.reset();
+          showStep(1);
+        } else {
+          throw new Error(result.error || 'Błąd podczas wysyłania formularza');
+        }
       } catch (error) {
-        alert(error.message);
+        console.error('Błąd:', error);
+        alert(`Błąd: ${error.message}`);
       } finally {
         submitButton.disabled = false;
         submitButton.textContent = 'Zarejestruj';

@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Polyfill dla rozszerzeń
-  window.browser = window.browser || { runtime: {} };
+  if (typeof browser === "undefined") {
+    window.browser = chrome;
+  }
 
   // Timer
   const countdownDate = new Date('2025-03-14T18:00:00').getTime();
@@ -244,3 +246,148 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+// Teams loader
+document.addEventListener('DOMContentLoaded', async () => {
+  const teamsGrid = document.querySelector('.teams-grid');
+  
+  try {
+    const response = await fetch('teams.json');
+    if (!response.ok) throw new Error('Błąd ładowania danych');
+    const teams = await response.json();
+    
+    teamsGrid.classList.remove('loading');
+    teamsGrid.innerHTML = '';
+    
+    teams.forEach(team => {
+      const card = document.createElement('div');
+      card.className = 'team-card';
+      card.innerHTML = `
+  <div class="team-header">
+    <img src="${team.logo}" class="team-logo sniadowiakilogo" alt="Logo ${team.name}">
+    <h3 class="team-name">${team.name}</h3>
+  </div>
+  <ul class="players-list">
+    ${team.players.map(player => `
+      <li class="player-item">
+        <span>${player.nickname}</span>
+      </li>
+    `).join('')}
+  </ul>
+        </div>
+      `;
+      teamsGrid.appendChild(card);
+    });
+    
+  } catch (error) {
+    teamsGrid.innerHTML = `
+      <div class="error-message">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>${error.message}</p>
+      </div>
+    `;
+    teamsGrid.classList.remove('loading');
+  }
+});
+async function renderBracket() {
+  const container = document.querySelector('.bracket-container');
+  
+  try {
+    const response = await fetch('bracket.json');
+    const data = await response.json();
+    
+    data.rounds.forEach((round, index) => {
+      const roundDiv = document.createElement('div');
+      roundDiv.className = 'bracket-round';
+      
+      const roundTitle = document.createElement('h3');
+      roundTitle.className = 'round-title';
+      roundTitle.textContent = round.name;
+      roundDiv.appendChild(roundTitle);
+      
+      round.matches.forEach(match => {
+        const matchDiv = document.createElement('div');
+        matchDiv.className = 'bracket-match';
+        
+        // Status meczu
+        const status = document.createElement('div');
+        status.className = 'match-status';
+        status.textContent = match.status === 'completed' ? 'Zakończony' : 
+                           match.status === 'live' ? 'Na żywo' : 'Nadchodzący';
+        matchDiv.appendChild(status);
+        
+        // Team A
+        const teamA = createTeamElement(match.teamA, match.scoreA, true);
+        matchDiv.appendChild(teamA);
+        
+        // Team B
+        const teamB = createTeamElement(match.teamB, match.scoreB, false);
+        matchDiv.appendChild(teamB);
+        
+        // Connector
+        if(index < data.rounds.length - 1) {
+          const connector = document.createElement('div');
+          connector.className = 'match-connector';
+          matchDiv.appendChild(connector);
+        }
+        
+        roundDiv.appendChild(matchDiv);
+      });
+      
+      container.appendChild(roundDiv);
+    });
+    
+  } catch(error) {
+    console.error('Błąd ładowania drabinki:', error);
+    container.innerHTML = `<div class="error">Błąd ładowania danych turnieju</div>`;
+  }
+}
+
+function createTeamElement(teamName, score, isWinner) {
+  const teamDiv = document.createElement('div');
+  teamDiv.className = `match-team ${isWinner && score !== null ? 'winner' : ''}`;
+  
+  const nameSpan = document.createElement('span');
+  nameSpan.className = 'team-name';
+  nameSpan.textContent = teamName || 'Awaiting...';
+  
+  const scoreSpan = document.createElement('span');
+  scoreSpan.className = 'match-score';
+  scoreSpan.textContent = score !== null ? score : 'vs';
+  
+  teamDiv.appendChild(nameSpan);
+  teamDiv.appendChild(scoreSpan);
+  
+  return teamDiv;
+}
+
+// Wywołaj po załadowaniu DOM
+document.addEventListener('DOMContentLoaded')
+async function renderBracket() {
+  const container = document.querySelector('.bracket-container');
+  console.log('Container:', container); // Debug 1
+  
+  if (!container) {
+    console.error('Błąd: Nie znaleziono .bracket-container');
+    return;
+  }
+
+  try {
+    console.log('Rozpoczynanie pobierania danych...'); // Debug 2
+    const response = await fetch('bracket.json');
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`); // Debug 3
+    }
+    
+    console.log('Odpowiedź otrzymana, parsowanie JSON...'); // Debug 4
+    const data = await response.json();
+    console.log('Dane z JSON:', data); // Debug 5
+    
+    // Tymczasowe wyświetlenie struktury
+    container.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`; 
+    
+  } catch(error) {
+    console.error('Pełny błąd:', error); // Debug 6
+    container.innerHTML = `<div class="error">Błąd: ${error.message}</div>`;
+  }
+}

@@ -190,10 +190,10 @@ body {
         <h1>CyberStrike Amateur Cup 2024</h1>
         <h2>Start turnieju za:</h2>
         <div class="timer">
-          <span id="days">00</span> Dni
-          <span id="hours">00</span> Godzin
-          <span id="minutes">00</span> Minut
-          <span id="seconds">00</span> Sekund
+          <span id="days">00</span> D
+          <span id="hours">00</span> H
+          <span id="minutes">00</span> M
+          <span id="seconds">00</span> S
         </div>
       </div>
     </div>
@@ -224,7 +224,9 @@ body {
         <div class="progress"></div>
       </div>
       <form id="registrationForm" action="https://formspree.io/f/xjkgeene" method="POST">
-        <!-- Krok 1: Nazwa drużyny -->
+        <input type="hidden" name="_language" value="pl"> <!-- Wymuszenie języka -->
+        <input type="hidden" name="_subject" value="Nowa rejestracja - CyberStrike Cup"> 
+        <input type="hidden" name="_replyto"> <!-- Automatyczne wykrywanie emaila --><!-- Krok 1: Nazwa drużyny -->
         <div class="form-step active" id="step1">
           <div class="input-group">
             <div class="form-group">

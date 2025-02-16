@@ -1,8 +1,12 @@
 [
     {
-        "name": "Sniadowiaki",
-        "captain": "Adrianoss125",
-        "players": ["dnlooo_", "Kielek69", "Koval", "Eshu"],
-        "avgHours": 1217
+      "name": "Sniadowiaki",
+      "logo": "/turniej/images/sniadowiaki.png",
+      "players": [
+        {"nickname": "Adrianoss125"},
+        {"nickname": "dnlooo_"},
+        {"nickname": "Kielek69"},
+        {"nickname": "Koval"},
+        {"nickname": "-ESHU-"}]
     }
 ]
